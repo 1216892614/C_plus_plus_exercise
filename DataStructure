@@ -1,0 +1,250 @@
+//1-1线性表
+const int DefaultSize = 100;
+
+template <class T>
+class SeqList
+{
+public:
+    SeqList(int sz = DefaultSize)
+        :m_nmaxsize(sz),m_ncurrentsize(-1)
+    {//初始化顺序表
+        if(sz > 0)
+        {
+            m_element = new T[m_nmaxsize];
+        }
+    }
+    ~SeqList()
+    {
+        delete[] m_element;
+    }
+    int Length() const;////获取顺序表长度
+    int Find(T x) const;//找到元素 x 的位置
+    int IsElement(T x) const; //顺序表中是否存在元素x
+    int Insert(T x,int i);//插入元素x
+    int Delete(T x);//删除元素x
+    int IsEmpty() const;//判断顺序表是否为空
+    int IsFull() const;//判断顺序表是否满
+    T GetElement(int i);//获取第i个元素
+    void Print();
+
+private:
+    T* m_element;
+    const int m_nmaxsize;
+    int m_ncurrentsize;
+};
+template<class T>
+int SeqList<T>::Length() const
+{
+    return m_ncurrentsize + 1;
+}
+
+template<class T>
+int SeqList<T>::Find(T x) const
+{
+    for(int i = 0 ;i < m_ncurrentsize; i++)
+    {
+        if(m_element[i] == x)
+            return i;
+    }
+    cout << "没有找到你想要的元素" << endl;
+    return -1;
+}
+template<class T>
+int SeqList<T>::IsElement(T x) const
+{
+    if(Find(x) == -1)
+        return 0;
+    else
+        return 1;
+}
+template<class T>
+int SeqList<T>::Insert(T x, int i)
+{
+    if(i < 0 || i > m_ncurrentsize + 1 || m_ncurrentsize == m_nmaxsize - 1)
+    {
+        cout << "非法操作" << endl;
+        return 0;
+    }
+    m_ncurrentsize ++;
+
+    for(int j = m_ncurrentsize; j >i; j --)
+    {
+        m_element[j] = m_element[j-1];
+    }
+    m_element[i] = x;
+    return 1;
+}
+template<class T>
+int SeqList<T>::Delete(T x)
+{
+    int nsize = m_ncurrentsize;
+    for(int i = 0; i< m_ncurrentsize; i++)
+    {
+        if(m_element[i] == x)
+        {
+            for(int j = i; j < m_ncurrentsize; j ++)
+            {
+                m_element[j] = m_element[j+1];
+            }
+            m_ncurrentsize --;
+            continue;
+        }
+    }
+    if(nsize = m_ncurrentsize)
+    {
+        cout << "没有找到你想要删除的元素" << endl;
+        return 0;
+    }
+    return 1;
+}
+
+
+template<class T>
+int SeqList<T>::IsFull() const
+{
+    return m_ncurrentsize == m_nmaxsize -1;
+}
+template<class T>
+T SeqList<T>::GetElement(int i)
+{
+    if(i < 0 || i > m_nmaxsize)
+    {
+        cout << "非法操作" << endl;
+        return 0;
+    }
+    return m_element[i];
+}
+template<class T>
+void SeqList<T>::Print()
+{
+    for(int i = 0 ;i <= m_ncurrentsize;i ++)
+    {
+        cout << i + 1 << ":\t" << m_element[i] << endl;
+    }
+    
+}
+//控制台接口
+const int DefaultSize = 100;
+
+template <class T>
+class SeqList
+{
+public:
+    SeqList(int sz = DefaultSize)
+        :m_nmaxsize(sz),m_ncurrentsize(-1)
+    {//初始化顺序表
+        if(sz > 0)
+        {
+            m_element = new T[m_nmaxsize];
+        }
+    }
+    ~SeqList()
+    {
+        delete[] m_element;
+    }
+    int Length() const;////获取顺序表长度
+    int Find(T x) const;//找到元素 x 的位置
+    int IsElement(T x) const; //顺序表中是否存在元素x
+    int Insert(T x,int i);//插入元素x
+    int Delete(T x);//删除元素x
+    int IsEmpty() const;//判断顺序表是否为空
+    int IsFull() const;//判断顺序表是否满
+    T GetElement(int i);//获取第i个元素
+    void Print();
+
+private:
+    T* m_element;
+    const int m_nmaxsize;
+    int m_ncurrentsize;
+};
+template<class T>
+int SeqList<T>::Length() const
+{
+    return m_ncurrentsize + 1;
+}
+
+template<class T>
+int SeqList<T>::Find(T x) const
+{
+    for(int i = 0 ;i < m_ncurrentsize; i++)
+    {
+        if(m_element[i] == x)
+            return i;
+    }
+    cout << "没有找到你想要的元素" << endl;
+    return -1;
+}
+template<class T>
+int SeqList<T>::IsElement(T x) const
+{
+    if(Find(x) == -1)
+        return 0;
+    else
+        return 1;
+}
+template<class T>
+int SeqList<T>::Insert(T x, int i)
+{
+    if(i < 0 || i > m_ncurrentsize + 1 || m_ncurrentsize == m_nmaxsize - 1)
+    {
+        cout << "非法操作" << endl;
+        return 0;
+    }
+    m_ncurrentsize ++;
+
+    for(int j = m_ncurrentsize; j >i; j --)
+    {
+        m_element[j] = m_element[j-1];
+    }
+    m_element[i] = x;
+    return 1;
+}
+template<class T>
+int SeqList<T>::Delete(T x)
+{
+    int nsize = m_ncurrentsize;
+    for(int i = 0; i< m_ncurrentsize; i++)
+    {
+        if(m_element[i] == x)
+        {
+            for(int j = i; j < m_ncurrentsize; j ++)
+            {
+                m_element[j] = m_element[j+1];
+            }
+            m_ncurrentsize --;
+            continue;
+        }
+    }
+    if(nsize = m_ncurrentsize)
+    {
+        cout << "没有找到你想要删除的元素" << endl;
+        return 0;
+    }
+    return 1;
+}
+
+
+template<class T>
+int SeqList<T>::IsFull() const
+{
+    return m_ncurrentsize == m_nmaxsize -1;
+}
+template<class T>
+T SeqList<T>::GetElement(int i)
+{
+    if(i < 0 || i > m_nmaxsize)
+    {
+        cout << "非法操作" << endl;
+        return 0;
+    }
+    return m_element[i];
+}
+template<class T>
+void SeqList<T>::Print()
+{
+    for(int i = 0 ;i <= m_ncurrentsize;i ++)
+    {
+        cout << i + 1 << ":\t" << m_element[i] << endl;
+    }
+    
+}
